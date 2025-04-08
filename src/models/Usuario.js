@@ -3,18 +3,18 @@ import bcrypt from "bcryptjs";
 
 // Esquema para el usuario
 const usuarioSchema = new mongoose.Schema({
-  nombre: {
-    type: String,
-    required: true,
-  },
-  correo: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  contrasena: {
-    type: String,
-    required: true,
+  nombre: { type: String, required: true },
+  correo: { type: String, required: true, unique: true },
+  contrasena: { type: String, required: true },
+  favoritos: [{ type: mongoose.Schema.Types.ObjectId, ref: "SnackBox" }],
+  suscripcion: {
+    tipo: {
+      type: String,
+      enum: ["mensual", "trimestral", "anual"],
+      default: null,
+    },
+    inicio: Date,
+    fin: Date,
   },
 });
 

@@ -7,6 +7,7 @@ import connectDB from "./config/db.js";
 import snackBoxRoutes from "./routes/snackBoxRoutes.js";
 import carritoRoutes from "./routes/carritoRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import favoritosRoutes from "./routes/favoritosRoutes.js";
 
 import autenticarUsuario from "./middleware/authMiddleware.js";
 
@@ -21,6 +22,7 @@ app.use("/api/carrito", carritoRoutes);
 app.use("/api/cajas", snackBoxRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/carrito", autenticarUsuario, carritoRoutes);
+app.use("/api/favoritos", favoritosRoutes);
 
 app.get("/", (req, res) => {
   res.send("🎉 Bienvenido a la API de SnackWorld");
