@@ -1,4 +1,4 @@
-import Carrito from "../models/carrito.js";
+import Carrito from "../models/Carrito.js";
 
 // Agregar un artículo al carrito
 export const agregarAlCarrito = async (req, res) => {
