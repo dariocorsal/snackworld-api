@@ -36,7 +36,5 @@ app.get("/", (req, res) => {
   res.send("Snackworld API corriendo correctamente");
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+// Vercel no usa app.listen(), entonces debes exportar el app para que lo maneje el entorno serverless.
+export default app;
