@@ -1,10 +1,17 @@
 import jwt from "jsonwebtoken";
 
 const autenticarUsuario = (req, res, next) => {
-  const token = req.header("Authorization");
+  const authHeader = req.header("Authorization");
+
+  if (!authHeader) {
+    return res.status(401).json({ mensaje: "No se ha proporcionado un token" });
+  }
+
+  // Dividir el header en ["Bearer", "eyJhbGciOi..."]
+  const token = authHeader.split(" ")[1];
 
   if (!token) {
-    return res.status(401).json({ mensaje: "No se ha proporcionado un token" });
+    return res.status(401).json({ mensaje: "Token no válido" });
   }
 
   try {

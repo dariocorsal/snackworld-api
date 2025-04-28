@@ -1,5 +1,4 @@
 import Usuario from "../models/Usuario.js";
-import SnackBox from "../models/SnackBox.js";
 
 // Agregar a favoritos
 export const agregarFavorito = async (req, res) => {

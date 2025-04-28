@@ -4,11 +4,12 @@ import {
   obtenerCarrito,
   eliminarDelCarrito,
 } from "../controllers/carritoController.js";
+import autenticarUsuario from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.post("/agregar", agregarAlCarrito);
-router.get("/obtener", obtenerCarrito);
-router.delete("/eliminar/:snackBoxId", eliminarDelCarrito);
+router.post("/agregar", autenticarUsuario, agregarAlCarrito);
+router.get("/obtener", autenticarUsuario, obtenerCarrito);
+router.delete("/eliminar/:snackBoxId", autenticarUsuario, eliminarDelCarrito);
 
 export default router;

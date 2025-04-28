@@ -2,7 +2,7 @@ import Usuario from "../models/Usuario.js";
 
 // Activar una suscripción
 export const activarSuscripcion = async (req, res) => {
-  const { tipo } = req.body; // mensual | trimestral | anual
+  const { tipo } = req.body; // mensual, trimestral o anual
   const usuarioId = req.usuarioId;
 
   const duraciones = {
