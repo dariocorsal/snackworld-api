@@ -16,7 +16,7 @@ const router = express.Router();
 router.get("/", obtenerCajas);
 router.post("/", crearCaja);
 router.get("/:id", obtenerCajaPorId);
-router.delete("/:id", eliminarCaja);
+router.delete("/:id", autenticarUsuario, verificarAdmin, eliminarCaja);
 router.get("/populares", obtenerPopulares);
 router.get("/buscar", buscarCajas);
 router.put("/:id", autenticarUsuario, verificarAdmin, editarCaja);
