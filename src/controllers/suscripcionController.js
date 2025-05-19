@@ -45,7 +45,7 @@ export const obtenerSuscripcion = async (req, res) => {
     const usuario = await Usuario.findById(usuarioId);
 
     if (!usuario || !usuario.suscripcion?.tipo) {
-      return res.status(404).json({ mensaje: "Sin suscripción activa" });
+      return res.status(200).json({ mensaje: "Sin suscripción activa" });
     }
 
     const { tipo, inicio, fin } = usuario.suscripcion;
