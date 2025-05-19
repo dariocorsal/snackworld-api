@@ -41,3 +41,11 @@ export const agregarOpinion = async (req, res) => {
 
   res.status(201).json(opinion);
 };
+
+export const obtenerOpiniones = async (req, res) => {
+  const opiniones = await Opinion.find({ caja: req.params.cajaId }).populate(
+    "usuario",
+    "nombre"
+  );
+  res.json(opiniones);
+};
