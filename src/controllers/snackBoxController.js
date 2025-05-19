@@ -1,4 +1,5 @@
 import SnackBox from "../models/SnackBox.js";
+import Opinion from "../models/Opinion.js";
 
 export const obtenerCajas = async (req, res) => {
   const cajas = await SnackBox.find();
@@ -21,9 +22,6 @@ export const eliminarCaja = async (req, res) => {
   await SnackBox.findByIdAndDelete(req.params.id);
   res.json({ mensaje: "Caja eliminada" });
 };
-
-import SnackBox from "../models/SnackBox.js";
-import Opinion from "../models/Opinion.js";
 
 export const obtenerPopulares = async (req, res) => {
   try {
