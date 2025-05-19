@@ -10,7 +10,7 @@ const SnackBoxSchema = new mongoose.Schema(
     productos: [String], // snacks dentro de la caja
     estrellas: {
       type: Number,
-      default: null,
+      default: 0,
       min: 1,
       max: 5,
     },
