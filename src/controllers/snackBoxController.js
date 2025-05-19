@@ -22,9 +22,40 @@ export const eliminarCaja = async (req, res) => {
   res.json({ mensaje: "Caja eliminada" });
 };
 
+import SnackBox from "../models/SnackBox.js";
+import Opinion from "../models/Opinion.js";
+
 export const obtenerPopulares = async (req, res) => {
-  const cajas = await SnackBox.find().sort({ estrellas: -1 }).limit(10);
-  res.json(cajas);
+  try {
+    const cajas = await SnackBox.find();
+
+    // Calcular promedios de estrellas dinámicamente
+    const cajasConEstrellas = await Promise.all(
+      cajas.map(async (caja) => {
+        const opiniones = await Opinion.find({ caja: caja._id });
+        if (opiniones.length > 0) {
+          const promedio =
+            opiniones.reduce((sum, o) => sum + o.calificacion, 0) /
+            opiniones.length;
+          caja.estrellas = Math.round(promedio * 10) / 10; // Ej: 3.6
+        } else {
+          caja.estrellas = null;
+        }
+        return caja;
+      })
+    );
+
+    // Ordenar por estrellas (mayor a menor) y tomar las primeras 10
+    const cajasPopulares = cajasConEstrellas
+      .filter((caja) => caja.estrellas !== null)
+      .sort((a, b) => b.estrellas - a.estrellas)
+      .slice(0, 10);
+
+    res.json(cajasPopulares);
+  } catch (error) {
+    console.error("Error al obtener cajas populares:", error);
+    res.status(500).json({ mensaje: "Error interno del servidor" });
+  }
 };
 
 export const buscarCajas = async (req, res) => {
