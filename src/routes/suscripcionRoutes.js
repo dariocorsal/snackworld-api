@@ -9,10 +9,12 @@ const router = express.Router();
 
 router.use(autenticarUsuario);
 
-// POST /api/suscripcion, activar o renovar suscripción
 router.post("/", activarSuscripcion);
 
-// GET /api/suscripcion, consultar suscripción actual
 router.get("/", obtenerSuscripcion);
+
+router.get("/activas", autenticarUsuario, obtenerTotalSuscripcionesActivas);
+
+router.get("/ingresos", autenticarUsuario, esAdmin, calcularIngresosEsperados);
 
 export default router;

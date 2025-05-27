@@ -18,7 +18,7 @@ const usuarioSchema = new mongoose.Schema({
   suscripcion: {
     tipo: {
       type: String,
-      enum: ["mensual", "trimestral", "semestral", "anual"],
+      enum: ["mensual", "semestral", "anual"],
       default: null,
     },
     inicio: Date,

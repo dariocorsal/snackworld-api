@@ -55,3 +55,47 @@ export const obtenerSuscripcion = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+export const obtenerTotalSuscripcionesActivas = async (req, res) => {
+  try {
+    const hoy = new Date();
+
+    const totalActivas = await Usuario.countDocuments({
+      "suscripcion.fin": { $gt: hoy },
+    });
+
+    res.status(200).json({ totalActivas });
+  } catch (error) {
+    res
+      .status(500)
+      .json({
+        mensaje: "Error al obtener suscripciones activas",
+        error: error.message,
+      });
+  }
+};
+
+export const calcularIngresosEsperados = async (req, res) => {
+  try {
+    const hoy = new Date();
+
+    const activas = await Usuario.find({
+      "suscripcion.fin": { $gt: hoy },
+    });
+
+    let total = 0;
+
+    for (const usuario of activas) {
+      const tipo = usuario.suscripcion?.tipo;
+      if (tipo === "mensual") total += 25;
+      else if (tipo === "semestral") total += 22;
+      else if (tipo === "anual") total += 20;
+    }
+
+    res.status(200).json({ ingresosEsperados: `$${total}` });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ mensaje: "Error al calcular ingresos", error: error.message });
+  }
+};
