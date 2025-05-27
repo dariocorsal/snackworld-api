@@ -66,12 +66,10 @@ export const obtenerTotalSuscripcionesActivas = async (req, res) => {
 
     res.status(200).json({ totalActivas });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        mensaje: "Error al obtener suscripciones activas",
-        error: error.message,
-      });
+    res.status(500).json({
+      mensaje: "Error al obtener suscripciones activas",
+      error: error.message,
+    });
   }
 };
 
@@ -88,7 +86,7 @@ export const calcularIngresosEsperados = async (req, res) => {
     for (const usuario of activas) {
       const tipo = usuario.suscripcion?.tipo;
       if (tipo === "mensual") total += 25;
-      else if (tipo === "semestral") total += 22;
+      else if (tipo === "trimestral") total += 22;
       else if (tipo === "anual") total += 20;
     }
 
