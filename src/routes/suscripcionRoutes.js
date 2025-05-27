@@ -9,12 +9,12 @@ const router = express.Router();
 
 router.use(autenticarUsuario);
 
+router.get("/activas", obtenerTotalSuscripcionesActivas);
+
+router.get("/ingresos", verificarAdmin, calcularIngresosEsperados);
+
 router.post("/", activarSuscripcion);
 
 router.get("/", obtenerSuscripcion);
-
-router.get("/activas", autenticarUsuario, obtenerTotalSuscripcionesActivas);
-
-router.get("/ingresos", autenticarUsuario, esAdmin, calcularIngresosEsperados);
 
 export default router;
