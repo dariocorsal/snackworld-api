@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.use(autenticarUsuario);
 
-router.get("/activas", obtenerTotalSuscripcionesActivas);
+router.get("/activas", verificarAdmin, obtenerTotalSuscripcionesActivas);
 
 router.get("/ingresos", verificarAdmin, calcularIngresosEsperados);
 
