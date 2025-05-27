@@ -6,7 +6,6 @@ import {
   calcularIngresosEsperados,
 } from "../controllers/suscripcionController.js";
 import autenticarUsuario from "../middleware/authMiddleware.js";
-import autenticarUsuario from "../middleware/authMiddleware.js";
 import verificarAdmin from "../middleware/rolAdmin.js";
 
 const router = express.Router();
