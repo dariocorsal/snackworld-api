@@ -41,14 +41,14 @@ Esto levantará el servidor en `http://localhost:3000` (o el puerto que definas)
 ## Estructura Básica del Proyecto
 
 SNACKWORLD-API/
-├── src/
-│ ├── controllers/
-│ ├── models/
-│ ├── routes/
-│ └── server.js
-├── .env
-├── package.json
-└── vercel.json
+   src/
+      controllers/
+         models/
+         routes/
+         server.js
+   .env
+   package.json
+   vercel.json
 
 ## Contacto
 
