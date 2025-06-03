@@ -38,18 +38,6 @@ Esto levantará el servidor en `http://localhost:3000` (o el puerto que definas)
 - El backend está preparado para despliegue en **Vercel** mediante funciones serverless. Puedes consultar el archivo `vercel.json` para ver la configuración.
 - Los archivos de rutas se encuentran en `src/routes/` y toda la lógica en `src/controllers/`.
 
-## Estructura Básica del Proyecto
-
-SNACKWORLD-API/
-   src/
-      controllers/
-         models/
-         routes/
-         server.js
-   .env
-   package.json
-   vercel.json
-
 ## Contacto
 
 Para dudas técnicas o contribuciones, contactar a: dariocs@cetys.edu.mx
